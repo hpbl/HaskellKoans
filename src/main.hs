@@ -9,5 +9,7 @@ import Pages.Index
 
 main :: IO ()
 main = simpleHTTP nullConf $ msum [
-                                    helloBlaze
+                                    dir "img" $ serveDirectory DisableBrowsing [] "img/",
+                                    dir "style" $ serveDirectory DisableBrowsing [] "style/",
+                                    index
                                   ]
