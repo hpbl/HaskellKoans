@@ -15,7 +15,6 @@ pageBuilder title headers body =
         H.head $ do
             H.title (H.toHtml title)
             H.meta ! A.httpEquiv "content-type" ! A.content "text/html;charset=utf-8"
-            H.link ! A.rel "stylesheet" ! A.type_ "text/css" ! A.href "style/index.css"
             sequence_ headers
         H.body $ do
             body

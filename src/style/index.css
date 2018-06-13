@@ -53,6 +53,6 @@
   text-align: justify;
 }
 
-.introText .start {
+.introText form {
   align-self: flex-end;
 }

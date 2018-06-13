@@ -32,15 +32,14 @@ introParagraphs = [
     ]
 
 subjects :: [String]
-subjects = [
-    "Syntax", "Operators", "Lists", "Functions"
-    ]
+subjects = ["Syntax", "Operators", "Lists", "Functions"]
 
 introTextDiv :: H.Html
 introTextDiv = H.div ! A.class_ "introText" $ do
                sequence_ $ paragraphsToP introParagraphs
                itemsToUl subjects
-               H.button ! A.class_ "start" $ "Let's Start!"
+               H.form ! A.enctype "multipart/form-data" ! A.action "/koans" ! A.method "GET" $ do
+                   H.button ! A.class_ "start" $ "Let's Start!"
 
 content :: H.Html
 content = H.div ! A.class_ "content" $ do
@@ -61,5 +60,8 @@ index :: ServerPart Response
 index = 
     ok $ toResponse $
         pageBuilder "Haskell Koans"
-                    [H.meta ! A.name "keywords" ! A.content "haskell, koans, programming"]
+                    [
+                        H.meta ! A.name "keywords" ! A.content "haskell, koans, programming",
+                        H.link ! A.rel "stylesheet" ! A.type_ "text/css" ! A.href "style/index.css"
+                    ]
                     container
