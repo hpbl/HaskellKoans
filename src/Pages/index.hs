@@ -6,7 +6,7 @@ import Text.Blaze ((!))
 import qualified Text.Blaze.Html4.Strict as H
 import qualified Text.Blaze.Html4.Strict.Attributes as A
 
-import HtmlHelper
+import HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
 
 -- Header --
 logoDiv :: H.Html
@@ -17,24 +17,35 @@ titleDiv :: H.Html
 titleDiv = H.div ! A.class_ "title" $ do
                H.h1 "Haskell Koans"
 
-rightMarginDiv :: H.Html
-rightMarginDiv = H.div ! A.class_ "right" $ do
-                     H.p "" -- TODO: Replace with empty div
-
 header :: H.Html
 header = H.div ! A.class_ "header" $ do
              logoDiv
              titleDiv
-             rightMarginDiv
+             marginDiv
 
 
 -- Content --
-loremBuba :: String
-loremBuba = concat $ (replicate 1000 "Belly Buba ")
+introParagraphs :: [String]
+introParagraphs = [
+        "Haskell /ˈhæskəl/ is a standardized, general-purpose compiled purely functional programming language, with non-strict semantics and strong static typing. It is named after logician Haskell Curry.",
+        "Haskell features lazy evaluation, pattern matching, list comprehension, type classes and type polymorphism. It is a purely functional language, which means that functions generally have no side effects. A distinct construct exists to represent side effects, orthogonal to the type of functions. A pure function can return a side effect that is subsequently executed, modeling the impure functions of other languages."
+    ]
+
+subjects :: [String]
+subjects = [
+    "Syntax", "Operators", "Lists", "Functions"
+    ]
+
+introTextDiv :: H.Html
+introTextDiv = H.div ! A.class_ "introText" $ do
+               sequence_ $ paragraphsToP introParagraphs
+               itemsToUl subjects
 
 content :: H.Html
 content = H.div ! A.class_ "content" $ do
-              H.p (H.toHtml loremBuba)
+              marginDiv
+              introTextDiv
+              marginDiv
 
 
 -- Container --

@@ -31,13 +31,22 @@
   height: 70px;
 }
 
-.right {
+.margin {
   flex: 1;
 }
 
 .content {
-  background-color: white;
   flex: 1;
   display: flex;
   justify-content: center;
+}
+
+.introText {
+  flex: 3;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.introText p {
+  text-align: justify;
 }
