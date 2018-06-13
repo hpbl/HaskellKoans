@@ -45,8 +45,14 @@
   flex: 3;
   padding-left: 10px;
   padding-right: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .introText p {
   text-align: justify;
+}
+
+.introText .start {
+  align-self: flex-end;
 }
