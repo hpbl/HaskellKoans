@@ -40,6 +40,7 @@ introTextDiv :: H.Html
 introTextDiv = H.div ! A.class_ "introText" $ do
                sequence_ $ paragraphsToP introParagraphs
                itemsToUl subjects
+               H.button ! A.class_ "start" $ "Let's Start!"
 
 content :: H.Html
 content = H.div ! A.class_ "content" $ do
