@@ -39,7 +39,7 @@ responded = do
                 exercise $ getNextKoan (read number :: Int)
 
 getNextKoan :: Int -> (Koan, Int)
-getNextKoan current = if (current + 1) <= length koans
+getNextKoan current = if current < (length koans) - 1
                             then (koans !! (current + 1), current + 1)
                             else error "Next topic please!"
 
