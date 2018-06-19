@@ -1,9 +1,9 @@
 module Model.Koan
  (
     Koan(..),
-    checkAnswer,
     codeParts,
-    koans
+    koans,
+    checkAnswer
  )where
 
 
@@ -45,3 +45,4 @@ koans = [
         Koan { theme="Equality", intro="We shall contemplate truth by testing reality, via equality", code="True /= #", answer="False" },
         Koan { theme="Equality", intro="What is cannot be not", code="True == #", answer="True" }
     ]
+    

@@ -38,7 +38,7 @@ introTextDiv :: H.Html
 introTextDiv = H.div ! A.class_ "introText" $ do
                sequence_ $ paragraphsToP introParagraphs
                itemsToUl subjects
-               H.form ! A.enctype "multipart/form-data" ! A.action "/koans" ! A.method "GET" $ do
+               H.form ! A.enctype "multipart/form-data" ! A.action "/koans/0" ! A.method "GET" $ do
                    H.button ! A.class_ "start" $ "Let's Start!"
 
 content :: H.Html
