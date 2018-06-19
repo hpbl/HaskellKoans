@@ -2,8 +2,7 @@ module Model.Koan
  (
     Koan(..),
     codeParts,
-    koans,
-    checkAnswer
+    isRightAnswer
  )where
 
 
@@ -35,14 +34,6 @@ splitOnKeyword (x:xs) accum = if x == keyword
 
 
 -- checks if the given answer is correct
-checkAnswer :: Koan -> String -> Bool
-checkAnswer koan givenAnswer = (answer koan) == givenAnswer
-
-
--- list of koans --
-koans :: [Koan]
-koans = [
-        Koan { theme="Equality", intro="We shall contemplate truth by testing reality, via equality", code="True /= #", answer="False" },
-        Koan { theme="Equality", intro="What is cannot be not", code="True == #", answer="True" }
-    ]
+isRightAnswer :: Koan -> String -> Bool
+isRightAnswer koan givenAnswer = (answer koan) == givenAnswer
     
