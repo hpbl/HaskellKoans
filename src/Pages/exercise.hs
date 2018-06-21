@@ -8,7 +8,7 @@ import qualified Text.Blaze.Html4.Strict.Attributes as A
 import Data.String (fromString)
 
 import Model.Koan (Koan, codeParts, intro)
-import HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
+import Helpers.HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
 
 
 -- Top --

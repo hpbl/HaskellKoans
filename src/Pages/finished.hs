@@ -6,7 +6,7 @@ import Text.Blaze ((!))
 import qualified Text.Blaze.Html4.Strict as H
 import qualified Text.Blaze.Html4.Strict.Attributes as A
 
-import HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
+import Helpers.HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
 
 
 -- Middle --
