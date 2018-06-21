@@ -6,13 +6,25 @@ import Text.Blaze ((!))
 import qualified Text.Blaze.Html4.Strict as H
 import qualified Text.Blaze.Html4.Strict.Attributes as A
 
-import Helpers.HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
+import Helpers.HtmlHelper (pageBuilder, paragraphsToP, itemsToUl)
+
+
+-- Top --
+emojiDiv :: H.Html
+emojiDiv = H.div ! A.class_ "emoji" $ do
+               H.img ! A.src "http://via.placeholder.com/100x100" 
+
+top :: H.Html
+top = H.div ! A.class_ "top" $ do
+             H.h2 $ do
+                "Congratulations, you finished"
+                H.br 
+                "the Haskell Koans!"
 
 
 -- Middle --
 middle :: H.Html
 middle = H.div ! A.class_ "middle" $ do
-             H.h1 "Congratulations, you finished the Haskell Koans!"
              H.p "progress bar"
              H.form ! A.enctype "multipart/form-data" ! A.action "/" ! A.method "GET" $ do
                  H.input ! A.type_ "submit" ! A.value "Home"
@@ -27,7 +39,8 @@ bottom = H.div ! A.class_ "bottom" $ do
 -- Container --
 container :: H.Html
 container = H.div ! A.class_ "container" $ do
-                marginDiv
+                emojiDiv
+                top
                 middle
                 bottom
 
