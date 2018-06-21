@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module HtmlHelper where
+module Helpers.HtmlHelper where
 
 import Happstack.Server
 import Text.Blaze ((!))
