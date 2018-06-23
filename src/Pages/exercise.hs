@@ -3,8 +3,8 @@ module Pages.Exercise where
 
 import Happstack.Server
 import Text.Blaze ((!))
-import qualified Text.Blaze.Html4.Strict as H
-import qualified Text.Blaze.Html4.Strict.Attributes as A
+import qualified Text.Blaze.Html5 as H
+import qualified Text.Blaze.Html5.Attributes as A
 import Data.String (fromString)
 
 import Model.Koan (Koan, codeParts, intro)
@@ -27,7 +27,7 @@ navigationDiv = H.div ! A.class_ "navigation" $ do
 koanDiv :: (Koan, Int) -> H.Html
 koanDiv (koan, index) = H.div ! A.class_ "koan" $ do
                             prefix 
-                            H.input ! A.type_ "text" ! A.name "answer"
+                            H.input ! A.type_ "text" ! A.name "answer" ! A.autocomplete "off"
                             H.input ! A.type_ "hidden" ! A.name "koanNumber" ! A.value (fromString (show index))
                             sufix
             where parts  = codeParts koan
