@@ -34,11 +34,12 @@ koanDiv (koan, index) = H.div ! A.class_ "koan" $ do
                   prefix = H.p (H.toHtml $ fst parts)
                   sufix  = H.p (H.toHtml $ snd parts)
 
-middle :: (Koan, Int) -> H.Html
-middle (koan, index) = H.div ! A.class_ "middle" $ do
+middle :: (Koan, Int, String) -> H.Html
+middle (koan, index, wrongAnswer) = H.div ! A.class_ "middle" $ do
                         H.form ! A.enctype "multipart/form-data" ! A.method "POST" $ do
                             H.h2 (H.toHtml $ intro koan) -- the koan intro text
                             koanDiv (koan, index)
+                            H.p (H.toHtml wrongAnswer) ! A.class_ "wrongAnswer"
                             navigationDiv
                  
 
@@ -49,20 +50,20 @@ bottom = H.div ! A.class_ "bottom" $ do
 
 
 -- Container --
-container :: (Koan, Int) -> H.Html
-container (koan, index) = H.div ! A.class_ "container" $ do
-                            top
-                            (middle (koan, index))
-                            bottom
+container :: (Koan, Int, String) -> H.Html
+container (koan, index, wrongAnswer) = H.div ! A.class_ "container" $ do
+                                            top
+                                            (middle (koan, index, wrongAnswer))
+                                            bottom
 
 
 -- exercise.html --
-exercise :: (Koan, Int) -> ServerPart Response
-exercise (koan, index) = 
+exercise :: (Koan, Int, String) -> ServerPart Response
+exercise (koan, index, wrongAnswer) = 
     ok $ toResponse $
         pageBuilder "Haskell Koans"
                     [
                         H.meta ! A.name "keywords" ! A.content "haskell, koans, programming",
                         H.link ! A.rel "stylesheet" ! A.type_ "text/css" ! A.href "../style/exercise.css"
                     ]
-                    (container (koan, index))
+                    (container (koan, index, wrongAnswer))

@@ -6,6 +6,7 @@ module Model.KoanManager
 
 import Model.Koan (Koan(..), isRightAnswer)
 import Helpers.RoutingHelper (redirect)
+import Pages.Exercise (exercise)
 
 import Happstack.Server (ServerPart, look, Response)
 
@@ -18,10 +19,10 @@ koans = [
 
 
 -- Recieves the index of current koan and returns the next one along with it's index --
-getNextKoanIndex :: Int -> Int
-getNextKoanIndex current = if current < (length koans) - 1
-                            then current + 1
-                            else error "Next topic please!"
+getNextKoan :: Int -> ServerPart Response
+getNextKoan current = if current < (length koans) - 1
+                        then redirect (show $ current + 1)
+                        else redirect "../finished"
 
 
 -- Check koan answer --
@@ -34,7 +35,8 @@ checkAnswer index answer = isRightAnswer koan answer
 answeredKoan :: ServerPart Response
 answeredKoan = do answer <- look "answer"
                   number <- look "koanNumber"
-                  if checkAnswer (read number) answer
-                    then redirect (show $ getNextKoanIndex (read number))
-                    else error "Wrong answer motherfucker!"
+                  let index = read number
+                  if checkAnswer index answer
+                    then getNextKoan index
+                    else  exercise ((koans !! index), index, "try again")
                   
