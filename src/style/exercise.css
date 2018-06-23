@@ -67,3 +67,9 @@ input[type=text] {
   justify-content: space-between;
   align-items: center;
 }
+
+.wrongAnswer {
+  font-family: "Courier New";
+  font-size: 18;
+  color: #FE0505;
+}

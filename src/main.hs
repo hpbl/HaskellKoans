@@ -24,7 +24,7 @@ handlers =
                 dir "img" $ serveDirectory DisableBrowsing [] "img/",
                 dir "style" $ serveDirectory DisableBrowsing [] "style/",
                 dir "koans" $ msum[
-                    Happstack.Server.method GET >> path (\number -> exercise ((koans !! number), number)),
+                    Happstack.Server.method GET >> path (\number -> exercise ((koans !! number), number, "")),
                     Happstack.Server.method POST >> answeredKoan
                 ],
                 dir "finished" $ finished,
