@@ -3,8 +3,8 @@ module Pages.Finished where
 
 import Happstack.Server
 import Text.Blaze ((!))
-import qualified Text.Blaze.Html4.Strict as H
-import qualified Text.Blaze.Html4.Strict.Attributes as A
+import qualified Text.Blaze.Html5 as H
+import qualified Text.Blaze.Html5.Attributes as A
 
 import Helpers.HtmlHelper (pageBuilder, paragraphsToP, itemsToUl)
 
