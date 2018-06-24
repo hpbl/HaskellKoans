@@ -7,15 +7,15 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 import Data.String (fromString)
 
-import Model.Koan (Koan, codeParts, intro)
+import Model.Koan (Koan, codeParts, intro, theme)
 import Helpers.HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
 
 
 -- Top --
-top :: H.Html
-top = H.div ! A.class_ "top" $ do
-          H.h3 "Arithmetic Operators"
-          H.p "Progress bar placeholder"
+top :: Koan -> H.Html
+top koan = H.div ! A.class_ "top" $ do
+            H.h3 $ H.toHtml $ theme koan
+            H.p "Progress bar placeholder"
 
 
 -- Middle --
@@ -24,23 +24,24 @@ navigationDiv = H.div ! A.class_ "navigation" $ do
                     H.input ! A.type_ "submit" ! A.class_ "navButton" ! A.value "<"
                     H.input ! A.type_ "submit" ! A.class_ "navButton" ! A.value ">"
 
-koanDiv :: (Koan, Int) -> H.Html
-koanDiv (koan, index) = H.div ! A.class_ "koan" $ do
+koanDiv :: (Koan, Int, Int) -> H.Html
+koanDiv (koan, theme, index) = H.div ! A.class_ "koan" $ do
                             prefix 
                             H.input ! A.type_ "text" ! A.name "answer" ! A.autocomplete "off"
                             H.input ! A.type_ "hidden" ! A.name "koanNumber" ! A.value (fromString (show index))
+                            H.input ! A.type_ "hidden" ! A.name "themeNumber" ! A.value (fromString (show theme))
                             sufix
             where parts  = codeParts koan
                   prefix = H.p (H.toHtml $ fst parts)
                   sufix  = H.p (H.toHtml $ snd parts)
 
-middle :: (Koan, Int, String) -> H.Html
-middle (koan, index, wrongAnswer) = H.div ! A.class_ "middle" $ do
-                        H.form ! A.enctype "multipart/form-data" ! A.method "POST" $ do
-                            H.h2 (H.toHtml $ intro koan) -- the koan intro text
-                            koanDiv (koan, index)
-                            H.p (H.toHtml wrongAnswer) ! A.class_ "wrongAnswer"
-                            navigationDiv
+middle :: (Koan, Int, Int, String) -> H.Html
+middle (koan, theme, index, wrongAnswer) = H.div ! A.class_ "middle" $ do
+                                            H.form ! A.enctype "multipart/form-data" ! A.method "POST" $ do
+                                                H.h2 (H.toHtml $ intro koan) -- the koan intro text
+                                                koanDiv (koan, theme, index)
+                                                H.p (H.toHtml wrongAnswer) ! A.class_ "wrongAnswer"
+                                                navigationDiv
                  
 
 -- Bottom --
@@ -50,20 +51,20 @@ bottom = H.div ! A.class_ "bottom" $ do
 
 
 -- Container --
-container :: (Koan, Int, String) -> H.Html
-container (koan, index, wrongAnswer) = H.div ! A.class_ "container" $ do
-                                            top
-                                            (middle (koan, index, wrongAnswer))
-                                            bottom
+container :: (Koan, Int, Int, String) -> H.Html
+container (koan, theme, index, wrongAnswer) = H.div ! A.class_ "container" $ do
+                                                (top koan)
+                                                (middle (koan, theme, index, wrongAnswer))
+                                                bottom
 
 
 -- exercise.html --
-exercise :: (Koan, Int, String) -> ServerPart Response
-exercise (koan, index, wrongAnswer) = 
+exercise :: (Koan, Int, Int, String) -> ServerPart Response
+exercise (koan, theme, index, wrongAnswer) = 
     ok $ toResponse $
         pageBuilder "Haskell Koans"
                     [
                         H.meta ! A.name "keywords" ! A.content "haskell, koans, programming",
-                        H.link ! A.rel "stylesheet" ! A.type_ "text/css" ! A.href "../style/exercise.css"
+                        H.link ! A.rel "stylesheet" ! A.type_ "text/css" ! A.href "../../style/exercise.css"
                     ]
-                    (container (koan, index, wrongAnswer))
+                    (container (koan, theme, index, wrongAnswer))
