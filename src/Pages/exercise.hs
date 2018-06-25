@@ -7,7 +7,7 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 import Data.String (fromString)
 
-import Model.Koan (Koan, codeParts, intro, theme)
+import Model.Koan (Koan, codeParts, intro, theme, answer)
 import Helpers.HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
 
 
@@ -15,7 +15,7 @@ import Helpers.HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
 top :: Koan -> H.Html
 top koan = H.div ! A.class_ "top" $ do
             H.h3 $ H.toHtml $ theme koan
-            H.p "Progress bar placeholder"
+            --H.p "Progress bar placeholder"
 
 
 -- Middle --
@@ -27,7 +27,7 @@ navigationDiv = H.div ! A.class_ "navigation" $ do
 koanDiv :: (Koan, Int, Int) -> H.Html
 koanDiv (koan, theme, index) = H.div ! A.class_ "koan" $ do
                             prefix 
-                            H.input ! A.type_ "text" ! A.name "answer" ! A.autocomplete "off"
+                            H.input ! A.type_ "text" ! A.name "answer" ! A.autocomplete "off" ! A.size (fromString $ show $ length $ answer koan)
                             H.input ! A.type_ "hidden" ! A.name "koanNumber" ! A.value (fromString (show index))
                             H.input ! A.type_ "hidden" ! A.name "themeNumber" ! A.value (fromString (show theme))
                             sufix
@@ -47,7 +47,7 @@ middle (koan, theme, index, wrongAnswer) = H.div ! A.class_ "middle" $ do
 -- Bottom --
 bottom :: H.Html
 bottom = H.div ! A.class_ "bottom" $ do
-             H.img ! A.src "../img/haskell-logo.png"
+             H.img ! A.src "../../img/haskell-logo.png"
 
 
 -- Container --

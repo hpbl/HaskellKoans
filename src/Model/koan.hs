@@ -2,7 +2,7 @@ module Model.Koan
  (
     Koan(..),
     codeParts,
-    isRightAnswer
+    isRightAnswer,
  )where
 
 import Helpers.RoutingHelper (splitOnKeyword)
