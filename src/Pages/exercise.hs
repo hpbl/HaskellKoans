@@ -21,8 +21,9 @@ top koan = H.div ! A.class_ "top" $ do
 -- Middle --
 navigationDiv :: H.Html
 navigationDiv = H.div ! A.class_ "navigation" $ do
+                    H.input ! A.type_ "submit" ! A.class_ "navButton" ! A.value ">" ! A.name "forward"
                     H.input ! A.type_ "submit" ! A.class_ "navButton" ! A.value "<" ! A.name "back" 
-                    H.input ! A.type_ "submit" ! A.class_ "navButton" ! A.value ">"
+
 
 koanDiv :: (Koan, Int, Int) -> H.Html
 koanDiv (koan, theme, index) = H.div ! A.class_ "koan" $ do
