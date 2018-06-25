@@ -3,10 +3,18 @@
   width: 100%; height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #DFDFDF;
+  overflow: auto;
 }
 
 .top {
   padding-left: 20px;
+}
+
+.top h3 {
+  font-family: "American Typewriter";
+  font-size: 28px;
+  color: #11256A;
 }
 
 .middle {
@@ -15,12 +23,23 @@
   flex-direction: column;
 }
 
+.middle h2 {
+  color: #010101; 
+  font-size: 30;
+}
+
 .middle form {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+}
+
+.koan p {
+  color: #444959;
+  font-family: "Courier New";
+  font-size: 25px;
 }
 
 .navigation {
@@ -41,13 +60,15 @@ input[type=submit] {
 }
 
 input[type=text] {
-    width: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
     height: 30px; 
     border: 1 none;
     border-radius: 5px; 
     color: gray;
-    font-size : 20px;
     text-align: center;
+    font-family: "Courier New";
+    font-size: 25px;
 }
 
 .bottom {
