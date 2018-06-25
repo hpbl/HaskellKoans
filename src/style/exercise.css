@@ -46,6 +46,7 @@
   display: flex;
   width: 150px;
   justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
 input[type=submit] {

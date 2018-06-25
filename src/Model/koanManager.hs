@@ -11,6 +11,7 @@ import Pages.Exercise (exercise)
 
 import Happstack.Server (ServerPart, looks, look, Response, ok, toResponse)
 import Control.Monad
+import Control.Applicative (optional)
 
 -- List of available koans by theme--
 equalityKoans :: [Koan]
@@ -58,12 +59,12 @@ checkAnswer indexes answer = isRightAnswer koan answer
 
 -- Check user response for a koan and redirect accordingly -- 
 answeredKoan :: ServerPart Response
-answeredKoan = do answer <- look "answer"
-                  theme  <- look "themeNumber"
-                  number <- look "koanNumber"
-                  back   <- looks "back"
-                  if (back /= []) 
-                    then ok $ toResponse "volte"
+answeredKoan = do answer  <- look "answer"
+                  theme   <- look "themeNumber"
+                  number  <- look "koanNumber"
+                  back    <- optional $ look "back"
+                  if (back /= Nothing)
+                    then ok $ toResponse back
                     else do
                       let koanIndex  = read number
                       let themeIndex = read theme
