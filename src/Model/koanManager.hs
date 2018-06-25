@@ -9,7 +9,8 @@ import Model.Koan (Koan(..), isRightAnswer)
 import Helpers.RoutingHelper (redirect)
 import Pages.Exercise (exercise)
 
-import Happstack.Server (ServerPart, look, Response, ok, toResponse)
+import Happstack.Server (ServerPart, looks, look, Response, ok, toResponse)
+import Control.Monad
 
 -- List of available koans by theme--
 equalityKoans :: [Koan]
@@ -60,10 +61,14 @@ answeredKoan :: ServerPart Response
 answeredKoan = do answer <- look "answer"
                   theme  <- look "themeNumber"
                   number <- look "koanNumber"
-                  let koanIndex  = read number
-                  let themeIndex = read theme
-                  let indexes = (themeIndex, koanIndex)
-                  if checkAnswer indexes answer
-                    then presentKoan $ getNextKoan indexes
-                    else  exercise (getKoan indexes, themeIndex, koanIndex, "try again")
+                  back   <- looks "back"
+                  if (back /= []) 
+                    then ok $ toResponse "volte"
+                    else do
+                      let koanIndex  = read number
+                      let themeIndex = read theme
+                      let indexes = (themeIndex, koanIndex)
+                      if checkAnswer indexes answer
+                        then presentKoan $ getNextKoan indexes
+                        else  exercise (getKoan indexes, themeIndex, koanIndex, "try again")
                   
