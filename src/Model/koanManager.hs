@@ -33,10 +33,6 @@ koans = [
   ]
 
 -- Recieves the index of current koan and returns the next one along with it's index --
-presentKoan :: Maybe (Int, Int) -> ServerPart Response
-presentKoan (Just (themeIndex, koanIndex)) = redirect $  "../" ++ (show $ themeIndex) ++ "/" ++ (show $ koanIndex)
-presentKoan Nothing = redirect "../../finished"
-
 getNextKoan :: (Int, Int) -> Maybe (Int, Int)
 getNextKoan (themeIndex, koanIndex)
     | hasNextRow = Just (themeIndex, koanIndex + 1) -- get next from same theme
@@ -45,6 +41,15 @@ getNextKoan (themeIndex, koanIndex)
         where hasNextColumn = themeIndex < ((length koans) - 1)
               currentTheme = koans !! themeIndex
               hasNextRow = koanIndex < ((length currentTheme) - 1)
+
+getPreviousKoan :: (Int, Int) -> Maybe (Int, Int)
+getPreviousKoan (themeIndex, koanIndex)
+    | hasPreviousRow    = Just (themeIndex, koanIndex - 1)
+    | haspreviousColumn = Just (themeIndex - 1, (length previousColumn) - 1)
+    | otherwise         = Nothing
+        where hasPreviousRow    = koanIndex > 0
+              haspreviousColumn = themeIndex > 0
+              previousColumn    = koans !! (themeIndex - 1)
 
 
 getKoan :: (Int, Int) -> Koan
@@ -58,18 +63,27 @@ checkAnswer indexes answer = isRightAnswer koan answer
 
 
 -- Check user response for a koan and redirect accordingly -- 
+presentNextKoan :: Maybe (Int, Int) -> ServerPart Response
+presentNextKoan (Just (themeIndex, koanIndex)) = redirect $  "../" ++ (show $ themeIndex) ++ "/" ++ (show $ koanIndex)
+presentNextKoan Nothing = redirect "../../finished"
+
+presentPreviousKoan :: Maybe (Int, Int) -> ServerPart Response
+presentPreviousKoan Nothing = redirect "../../"
+presentPreviousKoan indexes = presentNextKoan indexes
+
 answeredKoan :: ServerPart Response
 answeredKoan = do answer  <- look "answer"
                   theme   <- look "themeNumber"
                   number  <- look "koanNumber"
                   back    <- optional $ look "back"
+                  let koanIndex  = read number
+                  let themeIndex = read theme
+                  let indexes = (themeIndex, koanIndex)
                   if (back /= Nothing)
-                    then ok $ toResponse back
+                    then 
+                      presentPreviousKoan $ getPreviousKoan indexes
                     else do
-                      let koanIndex  = read number
-                      let themeIndex = read theme
-                      let indexes = (themeIndex, koanIndex)
                       if checkAnswer indexes answer
-                        then presentKoan $ getNextKoan indexes
+                        then presentNextKoan $ getNextKoan indexes
                         else  exercise (getKoan indexes, themeIndex, koanIndex, "try again")
                   
