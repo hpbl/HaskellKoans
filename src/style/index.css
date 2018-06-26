@@ -20,8 +20,11 @@
   justify-content: center;
   align-items: center;
   font-size: 30px;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   color: #2C342D;  
 }
+
+
 
 .logo {
   flex: 1;
@@ -57,12 +60,15 @@
   text-align: justify;
   font-size: 22px;
   color: #404040;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .introText ul li { /* .introText ul li a*/
+  margin-bottom: 10px;
   text-align: justify;
   font-size: 22px;
   color: #404040;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .introText .start {
@@ -75,6 +81,7 @@
   border-radius: 12px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   cursor: pointer;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .introText form {

@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   background-color: #DFDFDF;
-  overflow: auto;
 }
 
 .top {
@@ -12,9 +11,9 @@
 }
 
 .top h3 {
-  font-family: "American Typewriter";
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-size: 28px;
-  color: #11256A;
+  color: #2C342D; 
 }
 
 .middle {
@@ -24,8 +23,10 @@
 }
 
 .middle h2 {
-  color: #010101; 
-  font-size: 30;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 30px;
+  color: #2C342D;
+  text-align: center;
 }
 
 .middle form {
@@ -37,9 +38,9 @@
 }
 
 .koan p {
-  color: #444959;
-  font-family: "Courier New";
-  font-size: 25px;
+  color: #808597;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 22px;
 }
 
 .navigation {
@@ -50,26 +51,27 @@
 }
 
 input[type=submit] {
-    width: 50px;
-    height: 50px; 
-    background: rgb(73,	85,	100); 
-    border: 0 none;
-    cursor: pointer;
-    border-radius: 25px; 
-    color: gray;
-    font-size : 30px
+  width: 50px;
+  height: 50px; 
+  background: rgb(73,	85,	100); 
+  border: 0 none;
+  cursor: pointer;
+  border-radius: 25px; 
+  color: gray;
+  font-size : 30px
 }
 
 input[type=text] {
-    margin-left: 10px;
-    margin-right: 10px;
-    height: 30px; 
-    border: 1 none;
-    border-radius: 5px; 
-    color: gray;
-    text-align: center;
-    font-family: "Courier New";
-    font-size: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 30px; 
+  border: 0 none;
+  border-radius: 5px; 
+  color: #808597;
+  font-family: "Courier New", Courier, monospace;
+  font-size : 22px;
+  text-align: left;
+  padding-left: 3;
 }
 
 .bottom {
