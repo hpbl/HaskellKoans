@@ -25,7 +25,7 @@ top = H.div ! A.class_ "top" $ do
 -- Middle --
 middle :: H.Html
 middle = H.div ! A.class_ "middle" $ do
-             H.p "progress bar"
+             -- H.p "progress bar"
              H.form ! A.enctype "multipart/form-data" ! A.action "/" ! A.method "GET" $ do
                  H.input ! A.type_ "submit" ! A.value "Home"
                  
