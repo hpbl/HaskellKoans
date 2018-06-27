@@ -1,7 +1,9 @@
 {-# LANGUAGE DeriveGeneric, OverloadedStrings, ScopedTypeVariables #-}
 {-# OPTIONS_GHC -fno-warn-unused-binds #-}
 
-module HTTPRequest()
+module HTTPRequest(
+  getKoans,
+)
 where
 
 
@@ -43,7 +45,7 @@ parseKoanList = withObject "object" $ \o -> do
     rawData <- o .: "rawData"
     parseKoanList' rawData
 
-printDataFromServer :: Maybe a
+getKoans :: Maybe a
 printDataFromServer = do
   response <- (get "https://young-taiga-18731.herokuapp.com/data")
   let strJson = (case (response ^? responseBody) of
