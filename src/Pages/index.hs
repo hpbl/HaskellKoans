@@ -29,7 +29,7 @@ header = H.div ! A.class_ "header" $ do
 introParagraphs :: [String]
 introParagraphs = [
         "Haskell /ˈhæskəl/ is a standardized, general-purpose compiled purely functional programming language, with non-strict semantics and strong static typing. It is named after logician Haskell Curry.",
-        "Haskell features lazy evaluation, pattern matching, list comprehension, type classes and type polymorphism. It is a purely functional language, which means that functions generally have no side effects. A distinct construct exists to represent side effects, orthogonal to the type of functions. A pure function can return a side effect that is subsequently executed, modeling the impure functions of other languages."
+        "Haskell koans is the beginning of your journey towards Functional Enlightenment. By reflecting on each Koan you will lear about the mysterious ways of this amazing language. Every Koan contains a helpful message along with a line of code. As you will notice, the code is incomplete, and only you can make it whole again. So take deep breath, grab a cup of your favorite tea, and let us begin!"
     ]
 
 introTextDiv :: H.Html
