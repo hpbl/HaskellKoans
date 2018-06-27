@@ -29,13 +29,14 @@ instance FromJSON Koan where
 
 printDataFromServer :: IO ()
 printDataFromServer = do
-  response <- get "https://young-taiga-18731.herokuapp.com/data"
+  response <- (get "https://young-taiga-18731.herokuapp.com/data")
   let result = (case (response ^? responseBody) of
-                  Just value -> value
-                  Nothing -> Empty)
+                   Just value -> value
+                   Nothing -> Empty)
 
-  print $ koanList <$> decode result
-  --print $ response
+  print $ result
+
+  -----------print $ koanList <$> decode result
 
 
 main :: IO ()
