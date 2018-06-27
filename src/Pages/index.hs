@@ -7,6 +7,7 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 import Helpers.HtmlHelper (pageBuilder, paragraphsToP, marginDiv, itemsToUl)
+import Model.KoanManager (themes)
 
 -- Header --
 logoDiv :: H.Html
@@ -31,13 +32,10 @@ introParagraphs = [
         "Haskell features lazy evaluation, pattern matching, list comprehension, type classes and type polymorphism. It is a purely functional language, which means that functions generally have no side effects. A distinct construct exists to represent side effects, orthogonal to the type of functions. A pure function can return a side effect that is subsequently executed, modeling the impure functions of other languages."
     ]
 
-subjects :: [String]
-subjects = ["Syntax", "Operators", "Lists", "Functions"]
-
 introTextDiv :: H.Html
 introTextDiv = H.div ! A.class_ "introText" $ do
                sequence_ $ paragraphsToP introParagraphs
-               itemsToUl subjects
+               itemsToUl themes
                H.form ! A.enctype "multipart/form-data" ! A.action "/koans/0/0" ! A.method "GET" $ do
                    H.button ! A.class_ "start" $ "Let's Start!"
 

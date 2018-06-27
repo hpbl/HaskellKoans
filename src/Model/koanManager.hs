@@ -2,7 +2,8 @@ module Model.KoanManager
  (
     koans,
     answeredKoan,
-    getKoan
+    getKoan,
+    themes
  ) where
 
 import Model.Koan (Koan(..), isRightAnswer)
@@ -13,6 +14,7 @@ import Pages.Exercise (exercise)
 import Happstack.Server (ServerPart, looks, look, Response, ok, toResponse)
 import Control.Monad
 import Control.Applicative (optional)
+import Data.List (group)
 
 -- List of available koans by theme--
 koans :: [[Koan]]
@@ -46,6 +48,11 @@ getKoan (themeIndex, koanIndex) = (koans !! themeIndex) !! koanIndex
 checkAnswer :: (Int, Int) -> String -> Bool
 checkAnswer indexes answer = isRightAnswer koan answer
     where koan = getKoan indexes
+
+
+-- List of themes form koans --
+themes :: [String]
+themes = map (theme . head) localKoans
 
 
 -- Check user response for a koan and redirect accordingly -- 
