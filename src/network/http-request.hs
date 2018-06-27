@@ -46,7 +46,7 @@ parseKoanList = withObject "object" $ \o -> do
     parseKoanList' rawData
 
 getKoans :: Maybe a
-printDataFromServer = do
+getKoans = do
   response <- (get "https://young-taiga-18731.herokuapp.com/data")
   let strJson = (case (response ^? responseBody) of
                    Just value -> value
