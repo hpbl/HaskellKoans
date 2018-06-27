@@ -1,0 +1,32 @@
+Tema,Frase introdutória,Código (Haskell) do Exercício,Resposta do Exercício
+Logical Operators,Truth Sould Always Be Capitalized,True == #,True
+Logical Operators,Falseness Sould As Well,# /= True,False
+Logical Operators,One who is not in truth can only be in falsehood,not # == False,True
+Logical Operators,One cannot be right and wrong at the same time,True && False == #,False
+Logical Operators,Truth always prevails prevails given the chance,True || False == #,True
+Arithmetic Operators,Together we are more,1 # 1 == 2,+
+Arithmetic Operators,Absence is leaves space for nothingness,1 # 1 == 0,-
+Arithmetic Operators,Sharing is caring,10 / 2 == #,5
+Arithmetic Operators,Multiply what matters to you,10 * 2 == #,20
+Lists,Keep close what belongs together,"["a", "e", "i", "o", "u"#",]
+Lists,There are different ways to achieve the same result,"["a", "b", "c"] == a : b # c : []",:
+Lists,Some things are not what they seem,"['a', 'b'] == "a#"",b
+Lists,Keep your head on top of things,"head [1, 2, 3] == #",1
+Lists,Do not keep your tail between your legs,"# [1, 2, 3] == [2, 3]",tail
+Lists,Always measure your options well,"length [True, False] == #",2
+Lists,Sometimes you might question if you belong,"3 `elem` [1, 2, 3] == #",True
+Lists,But answers are always in range,"[1, 2, 3, 4, 5] == [1..#]",5
+Lists,Comprehension is key for double understanding,"[x*# | x <- [1..3]] == [2, 4, 6]",2
+Tuples,Sometimes listing things are not the answer,"("two", 2, True) == ("two"#)",", 2, True"
+Tuples,Sometimes the first thing that comes to mind is right,"fst (1, 2) == #",1
+Tuples,Sometimes it is the second,"snd (1, #) == 2",2
+Types,Learning is Integral to development of self,(1 :: Int) == #,1
+Types,Double the effort only when necessary,(3.1514 :: #) == 3.1514,Double
+Types,Don't String things along,"("along" :: #) == "along"",String
+Types,Who says what is True or False?,(True # Bool) == True,::
+Functions,Define what things are for yourself,doubleMe :# Int -> Int,:
+Functions,Only you should decide what to do,doubleMe x = 2 # x,*
+Functions,What you build is yours to use,doubleMe # == 20,10
+Higher Order Functions,Equal treatment for all,"map (+#) [1, 2, 3] == [2, 3, 4]",1
+Higher Order Functions,Raise your standards,"filter (>2) [1, 2, 3] == [#]",3
+Higher Order Functions,Reduce your worries,"foldl (+) 0 [1, 2, #] == 6",3
