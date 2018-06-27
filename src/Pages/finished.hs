@@ -12,7 +12,7 @@ import Helpers.HtmlHelper (pageBuilder, paragraphsToP, itemsToUl)
 -- Top --
 emojiDiv :: H.Html
 emojiDiv = H.div ! A.class_ "emoji" $ do
-               H.img ! A.src "http://via.placeholder.com/100x100" 
+               H.img ! A.src "img/winner.png" 
 
 top :: H.Html
 top = H.div ! A.class_ "top" $ do
@@ -25,7 +25,7 @@ top = H.div ! A.class_ "top" $ do
 -- Middle --
 middle :: H.Html
 middle = H.div ! A.class_ "middle" $ do
-             H.p "progress bar"
+             -- H.p "progress bar"
              H.form ! A.enctype "multipart/form-data" ! A.action "/" ! A.method "GET" $ do
                  H.input ! A.type_ "submit" ! A.value "Home"
                  

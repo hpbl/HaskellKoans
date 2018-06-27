@@ -2,8 +2,10 @@ module Model.Koan
  (
     Koan(..),
     codeParts,
-    isRightAnswer
+    isRightAnswer,
  )where
+
+import Helpers.RoutingHelper (splitOnKeyword)
 
 
 -- Data type for our exercises (koans)
@@ -22,15 +24,7 @@ keyword = '#'
 
 -- koan code parts
 codeParts :: Koan -> (String, String)
-codeParts koan = splitOnKeyword (code koan) ""
-
-
--- splits a string into two parts (before, after) keyword
-splitOnKeyword :: String -> String -> (String, String)
-splitOnKeyword [] _         = error "couldn't find keyword"
-splitOnKeyword (x:xs) accum = if x == keyword
-                                then (accum, xs)
-                                else splitOnKeyword xs (accum ++ [x])
+codeParts koan = splitOnKeyword (code koan) "" keyword
 
 
 -- checks if the given answer is correct

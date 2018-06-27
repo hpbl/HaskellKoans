@@ -3,16 +3,30 @@
   width: 100%; height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #DFDFDF;
 }
 
 .top {
   padding-left: 20px;
 }
 
+.top h3 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 28px;
+  color: #2C342D; 
+}
+
 .middle {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+.middle h2 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 30px;
+  color: #2C342D;
+  text-align: center;
 }
 
 .middle form {
@@ -23,31 +37,41 @@
   justify-content: space-around;
 }
 
+.koan p {
+  color: #808597;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 22px;
+}
+
 .navigation {
   display: flex;
   width: 150px;
   justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
 input[type=submit] {
-    width: 50px;
-    height: 50px; 
-    background: rgb(73,	85,	100); 
-    border: 0 none;
-    cursor: pointer;
-    border-radius: 25px; 
-    color: gray;
-    font-size : 30px
+  width: 50px;
+  height: 50px; 
+  background: rgb(73,	85,	100); 
+  border: 0 none;
+  cursor: pointer;
+  border-radius: 25px; 
+  color: gray;
+  font-size : 30px
 }
 
 input[type=text] {
-    width: 200px;
-    height: 30px; 
-    border: 1 none;
-    border-radius: 5px; 
-    color: gray;
-    font-size : 20px;
-    text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 30px; 
+  border: 0 none;
+  border-radius: 5px; 
+  color: #808597;
+  font-family: "Courier New", Courier, monospace;
+  font-size : 22px;
+  text-align: left;
+  padding-left: 3;
 }
 
 .bottom {

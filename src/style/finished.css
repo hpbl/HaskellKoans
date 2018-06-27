@@ -17,8 +17,8 @@
 
 .emoji img {
   display: flex;
-  width: 100px;
-  height: 100px;
+  width: 250;
+  height: 163px;
 }
 
 .top {
@@ -28,8 +28,9 @@
 
 .top h2 {
   text-align: center;
-  font-size: 30px;
-  color: #2C342D;  
+  font-size: 40px;
+  color: #2C342D;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .middle {
@@ -61,7 +62,7 @@ input[type=submit] {
     border-radius: 5px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     font-size : 25px;
-     
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .bottom {
