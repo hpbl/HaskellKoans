@@ -21,7 +21,7 @@ import Network.Wreq
 
 newtype KoanList = KoanList [Koan] deriving (Show)
 
-data Koan = Koan {id :: String, sentence :: String } deriving (Show)
+data Koan = Koan {id :: Int, sentence :: String } deriving (Show)
 
 -- instance FromJSON KoanList where
 --   parseJSON (Object o) = do
