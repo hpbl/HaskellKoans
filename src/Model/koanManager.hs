@@ -6,6 +6,7 @@ module Model.KoanManager
  ) where
 
 import Model.Koan (Koan(..), isRightAnswer)
+import Model.LocalKoans (localKoans)
 import Helpers.RoutingHelper (redirect)
 import Pages.Exercise (exercise)
 
@@ -14,23 +15,8 @@ import Control.Monad
 import Control.Applicative (optional)
 
 -- List of available koans by theme--
-equalityKoans :: [Koan]
-equalityKoans = [
-    Koan { theme="Equality", intro="We shall contemplate truth by testing reality, via equality", code="True /= #", answer="False" },
-    Koan { theme="Equality", intro="What is cannot be not", code="True == #", answer="True" }
-  ]
-
-arithmeticKoans :: [Koan]
-arithmeticKoans = [
-    Koan { theme="Arithmetic", intro="Hail to the thief", code="2 + # == 5", answer="3" },
-    Koan { theme="Arithmetic", intro="Joãozinho tem 10 melões.", code="10 / 5 == #", answer="2" }
-  ]
-
 koans :: [[Koan]]
-koans = [
-    equalityKoans,
-    arithmeticKoans
-  ]
+koans = localKoans -- TODO: Replace with DB data
 
 -- Recieves the index of current koan and returns the next one along with it's index --
 getNextKoan :: (Int, Int) -> Maybe (Int, Int)
