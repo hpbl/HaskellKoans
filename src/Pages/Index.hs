@@ -53,6 +53,16 @@ container = H.div ! A.class_ "container" $ do
                 content
 
 
+-- | CSS for our site
+--
+-- Normally this would live in an external .css file.
+-- It is included inline here to keep the example self-contained.
+css :: H.Html
+css =
+    let s = concat [".container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; background-color: #DFDFDF; overflow: auto; } .header { display: flex; flex-direction: row; justify-content: flex-start; padding-top: 20px; } .title { flex: 1; display: flex; justify-content: center; align-items: center; font-size: 30px; font-family: \"Palatino Linotype\", \"Book Antiqua\", Palatino, serif; color: #2C342D; } .logo { flex: 1; display: flex; justify-content: center; } .logo img { margin-right: 100px; width: 100px; height: 70px; } .margin { flex: 1; } .content { flex: 1; display: flex; justify-content: center; } .introText { flex: 3; padding-left: 10px; padding-right: 10px; display: flex; flex-direction: column; } .introText p { text-align: justify; font-size: 22px; color: #404040; font-family: \"Palatino Linotype\", \"Book Antiqua\", Palatino, serif; } .introText ul li { /* .introText ul li a*/ margin-bottom: 10px; text-align: justify; font-size: 22px; color: #404040; font-family: \"Palatino Linotype\", \"Book Antiqua\", Palatino, serif; } .introText .start { align-self: flex-end; width:150px; height:75px; background-color: #2C342D; font-size: 25px; color: #FEFEFE; border-radius: 12px; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); cursor: pointer; font-family: \"Palatino Linotype\", \"Book Antiqua\", Palatino, serif; } .introText form { display: flex; justify-content: flex-end; }"]
+    in H.style ! A.type_ "text/css" $ H.toHtml s
+
+
 -- Index.html --
 index :: ServerPart Response
 index = 
@@ -60,6 +70,7 @@ index =
         pageBuilder "Haskell Koans"
                     [
                         H.meta ! A.name "keywords" ! A.content "haskell, koans, programming",
-                        H.link ! A.rel "stylesheet" ! A.type_ "text/css" ! A.href "style/index.css"
+                        -- H.link ! A.rel "stylesheet" ! A.type_ "text/css" ! A.href "style/index.css"
+                        css
                     ]
                     container
