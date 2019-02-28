@@ -41,6 +41,9 @@ On the root of the project you'll find the `Dockerfile`. We also have a few scri
 6. To start the container run: `scripts/start.sh` and open a browser on http://localhost:8080
 7. To stop the container run:
   `scripts/stop.sh`
+  
+## Continuous Deployment
+Continuous Deployment is enabled through Heroku. Updates on the `master` branch are automatically deployed to http://haskellkoans.herokuapp.com
 
 
 ## Original Authors
