@@ -3,6 +3,7 @@ module Main where
 
 import Happstack.Server
 import Control.Monad (msum)
+import System.Environment
 
 import Pages.Index (index)
 import Pages.Exercise (exercise)
@@ -12,7 +13,11 @@ import Helpers.RoutingHelper (splitOnKeyword)
 
 
 main :: IO ()
-main = simpleHTTP nullConf $ handlers
+main = do
+    port <- getEnv "PORT"
+    let conf = nullConf { port = read port }
+    simpleHTTP conf $ handlers
+
 
 myPolicy :: BodyPolicy
 myPolicy = (defaultBodyPolicy "/tmp/" 0 1000 1000)
